@@ -32,7 +32,7 @@ public class Calculator {
 			Vector<StringBuffer> sousEquations = isolerSousEquations();
 			resultat = joindreSousResultats(sousEquations);
 		} catch(NumberFormatException e) {
-			throw(new Exception("Caractère(s) invalide(s)"));
+			throw(new Exception("CaractÃ¨re(s) invalide(s)"));
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class Calculator {
 		if(bufferSousEquationEnCours.length() != 0 && sousEquations.size() == 0) {
 			sousEquations.add(bufferSousEquationEnCours);
 		}
-		if(sousEquations.size() == 0) { throw(new Exception("Aucune équation!")); }
+		if(sousEquations.size() == 0) { throw(new Exception("Aucune Ã©quation!")); }
 		return sousEquations;
 	}
 	
@@ -93,7 +93,7 @@ public class Calculator {
 					break;
 				}
 			} while(true);
-			if(bufferSousEquationEnCours.length() == 0) { throw(new Exception("Couple de paranthèses vide!")); }
+			if(bufferSousEquationEnCours.length() == 0) { throw(new Exception("Couple de paranthÃ¨ses vide!")); }
 			Vector<String> operations = separerOperationsDeSousEquation(bufferSousEquationEnCours);
 			calculerOperation(operations);
 			sousEquations.setElementAt(new StringBuffer(operations.get(0)),I);
@@ -122,7 +122,7 @@ public class Calculator {
 					double testInfinity = java.lang.Double.valueOf(operations.get(I-1))/java.lang.Double.valueOf(operations.get(I+1));
 					if(java.lang.Double.toString(testInfinity).equals("Infinity")) {
 						testInfinity = 0;
-						throw(new Exception("Division par zéro!"));
+						throw(new Exception("Division par zÃ©ro!"));
 					}
 					operations.setElementAt(java.lang.Double.toString(testInfinity), I);
 					operations.remove(I - 1);
@@ -136,7 +136,7 @@ public class Calculator {
 					double testInfinity = java.lang.Double.valueOf(operations.get(I-1)) % java.lang.Double.valueOf(operations.get(I+1));
 					if(java.lang.Double.toString(testInfinity).equals("Infinity")) {
 						testInfinity = 0;
-						throw(new Exception("Division par zéro!"));
+						throw(new Exception("Division par zÃ©ro!"));
 					}
 					operations.setElementAt(java.lang.Double.toString(testInfinity), I);
 					operations.remove(I - 1);
@@ -185,7 +185,7 @@ public class Calculator {
 			}
 			case 7: {
 				if(caractereEnCours == '%') {
-					operations.setElementAt(Integer.toString(java.lang.Integer.valueOf(operations.get(I-1)) ^ ((int)java.lang.Integer.valueOf(operations.get(I+1)))), I);
+					operations.setElementAt(Integer.toString(java.lang.Integer.valueOf(operations.get(I-1)) % ((int)java.lang.Integer.valueOf(operations.get(I+1)))), I);
 					operations.remove(I - 1);
 					operations.remove(I);
 					I = 0;
@@ -224,7 +224,7 @@ public class Calculator {
 			case '^': {
 				if(etaitOperateur) {
 					etaitOperateur = false;
-					if(caractereEnCours != '-') { throw new Exception("Répétition d'opérateurs!"); }
+					if(caractereEnCours != '-') { throw new Exception("RÃ©pÃ©tition d'opÃ©rateurs!"); }
 					operationEnCours.append('-');
 				} else {
 					if(sousEquation.charAt(I -1) == '[' || sousEquation.charAt(I -1) == 'E') {
